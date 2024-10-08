@@ -12,7 +12,7 @@
 //
 //===----------------------------------------------------------------------===//
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 

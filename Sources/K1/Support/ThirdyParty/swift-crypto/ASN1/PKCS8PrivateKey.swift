@@ -12,7 +12,7 @@
 //
 //===----------------------------------------------------------------------===//
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -52,7 +52,7 @@ extension ASN1 {
             self = try ASN1.sequence(rootNode, identifier: identifier) { nodes in
                 let version = try Int(asn1Encoded: &nodes)
                 guard version == 0 else {
-                    throw CryptoKitASN1Error.invalidASN1Object
+                    throw CryptoASN1Error.invalidASN1Object
                 }
 
                 let algorithm = try ASN1.RFC5480AlgorithmIdentifier(asn1Encoded: &nodes)
@@ -64,7 +64,7 @@ extension ASN1 {
                 let sec1PrivateKeyNode = try ASN1.parse(privateKeyBytes.bytes)
                 let sec1PrivateKey = try ASN1.SEC1PrivateKey(asn1Encoded: sec1PrivateKeyNode)
                 if let innerAlgorithm = sec1PrivateKey.algorithm, innerAlgorithm != algorithm {
-                    throw CryptoKitASN1Error.invalidASN1Object
+                    throw CryptoASN1Error.invalidASN1Object
                 }
 
                 return try .init(algorithm: algorithm, privateKey: sec1PrivateKey)

@@ -1,4 +1,4 @@
-import struct CryptoKit.SharedSecret
+import struct Crypto.SharedSecret
 import Foundation
 
 // MARK: - K1.KeyAgreement

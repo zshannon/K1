@@ -12,7 +12,7 @@
 //
 //===----------------------------------------------------------------------===//
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -27,11 +27,11 @@ extension ASN1 {
 
         init(asn1Encoded node: ASN1.ASN1Node, withIdentifier identifier: ASN1.ASN1Identifier) throws {
             guard node.identifier == identifier, case .primitive(let content) = node.content else {
-                throw CryptoKitASN1Error.unexpectedFieldType
+                throw CryptoASN1Error.unexpectedFieldType
             }
 
             guard content.count == 0 else {
-                throw CryptoKitASN1Error.invalidASN1Object
+                throw CryptoASN1Error.invalidASN1Object
             }
         }
 

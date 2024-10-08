@@ -35,7 +35,9 @@ let package = Package(
 			]
 		),
 	],
-	dependencies: [],
+	dependencies: [
+		.package(url: "https://github.com/apple/swift-crypto", from: "3.8.0"),
+	],
 	targets: [
 		// Target `libsecp256k1` https://github.com/bitcoin-core/secp256k1
 		.target(
@@ -70,6 +72,7 @@ let package = Package(
 		.target(
 			name: "K1",
 			dependencies: [
+				.product(name: "Crypto", package: "swift-crypto"),
 				"secp256k1",
 			],
 			exclude: [

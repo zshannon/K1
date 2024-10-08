@@ -12,7 +12,7 @@
 //
 //===----------------------------------------------------------------------===//
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -60,7 +60,7 @@ extension ASN1 {
         init(rawIdentifier: UInt8) throws {
             // We don't support multibyte identifiers, which are signalled when the bottom 5 bits are all 1.
             guard rawIdentifier & 0x1F != 0x1F else {
-                throw CryptoKitASN1Error.invalidFieldIdentifier
+                throw CryptoASN1Error.invalidFieldIdentifier
             }
 
             self.baseTag = rawIdentifier

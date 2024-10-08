@@ -2,8 +2,8 @@
 // any edits of this file WILL be overwritten and thus discarded
 // see section `gyb` in `README` for details.
 
-import protocol CryptoKit.Digest
-import struct CryptoKit.SHA256
+import protocol Crypto.Digest
+import struct Crypto.SHA256
 import Foundation
 
 // MARK: Sign + ECDSA

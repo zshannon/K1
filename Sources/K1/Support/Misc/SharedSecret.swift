@@ -1,7 +1,7 @@
 import Foundation
 
 // MUST match https://github.com/apple/swift-crypto/blob/main/Sources/Crypto/Key%20Agreement/DH.swift#L34
-import struct CryptoKit.SharedSecret
+import struct Crypto.SharedSecret
 
 // MARK: - __SharedSecret
 /// A Key Agreement Result
@@ -14,7 +14,7 @@ struct __SharedSecret {
 	}
 }
 
-extension CryptoKit.SharedSecret {
+extension Crypto.SharedSecret {
 	init(data: Data) throws {
 		let __sharedSecret = __SharedSecret(ss: .init(bytes: data))
 		let sharedSecret = unsafeBitCast(__sharedSecret, to: SharedSecret.self)

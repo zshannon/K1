@@ -1,4 +1,4 @@
-import CryptoKit
+import Crypto
 @testable import K1
 import XCTest
 

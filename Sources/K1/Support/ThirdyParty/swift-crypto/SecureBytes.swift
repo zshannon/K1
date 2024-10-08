@@ -264,7 +264,11 @@ extension SecureBytes {
             let bytesToClear = self.header.capacity
 
             _ = self.withUnsafeMutablePointerToElements { elementsPtr in
+                #if canImport(Darwin)
                 memset_s(elementsPtr, bytesToClear, 0, bytesToClear)
+                #else
+                elementsPtr.initialize(repeating: 0, count: bytesToClear)
+                #endif
             }
         }
 

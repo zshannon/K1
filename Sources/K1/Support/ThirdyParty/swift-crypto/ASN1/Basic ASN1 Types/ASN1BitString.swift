@@ -12,7 +12,7 @@
 //
 //===----------------------------------------------------------------------===//
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -27,7 +27,7 @@ extension ASN1 {
 
         init(asn1Encoded node: ASN1.ASN1Node, withIdentifier identifier: ASN1.ASN1Identifier) throws {
             guard node.identifier == identifier else {
-                throw CryptoKitASN1Error.unexpectedFieldType
+                throw CryptoASN1Error.unexpectedFieldType
             }
 
             guard case .primitive(let content) = node.content else {
@@ -37,7 +37,7 @@ extension ASN1 {
             // The initial octet explains how many of the bits in the _final_ octet are not part of the bitstring.
             // The only value we support here is 0.
             guard content.first == 0 else {
-                throw CryptoKitASN1Error.invalidASN1Object
+                throw CryptoASN1Error.invalidASN1Object
             }
 
             self.bytes = content.dropFirst()

@@ -13,8 +13,8 @@
 //===----------------------------------------------------------------------===//
 
 // FROM: https://github.com/apple/swift-crypto/blob/5d8b14d22701c8394ad8cd5b297f8ffd9a6d3d4a/Sources/Crypto/CryptoKitErrors.swift#L34
-// MODIFICATIONS: Moved to `K1` namespace, i.e. `CryptoKitASN1Error` -> `K1.ASN1Error`.
-internal typealias CryptoKitASN1Error = K1.ASN1Error
+// MODIFICATIONS: Moved to `K1` namespace, i.e. `CryptoASN1Error` -> `K1.ASN1Error`.
+internal typealias CryptoASN1Error = K1.ASN1Error
 
 extension K1 {
 	/// Errors encountered when parsing ASN.1 formatted keys.

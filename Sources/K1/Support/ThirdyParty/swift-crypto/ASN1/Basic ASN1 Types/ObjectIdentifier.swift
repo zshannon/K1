@@ -17,7 +17,7 @@
 // * Added ASN1 identifier for curve `secp256k1`
 
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -36,7 +36,7 @@ extension ASN1 {
 
         init(asn1Encoded node: ASN1.ASN1Node, withIdentifier identifier: ASN1.ASN1Identifier) throws {
             guard node.identifier == identifier else {
-                throw CryptoKitASN1Error.unexpectedFieldType
+                throw CryptoASN1Error.unexpectedFieldType
             }
 
             guard case .primitive(var content) = node.content else {
@@ -70,7 +70,7 @@ extension ASN1 {
             }
 
             guard subcomponents.count >= 2 else {
-                throw CryptoKitASN1Error.invalidObjectIdentifier
+                throw CryptoASN1Error.invalidObjectIdentifier
             }
 
             // Now we need to expand the subcomponents out. This means we need to undo the step above. The first component will be in the range 0..<40
@@ -190,7 +190,7 @@ extension ArraySlice where Element == UInt8 {
         // In principle OID subidentifiers can be too large to fit into a UInt. We are choosing to not care about that
         // because for us it shouldn't matter.
         guard let subidentifierEndIndex = self.firstIndex(where: { $0 & 0x80 == 0x00 }) else {
-            throw CryptoKitASN1Error.invalidASN1Object
+            throw CryptoASN1Error.invalidASN1Object
         }
 
         let oidSlice = self[self.startIndex ... subidentifierEndIndex]
@@ -205,7 +205,7 @@ extension UInt {
     fileprivate init<Bytes: Collection>(sevenBitBigEndianBytes bytes: Bytes) throws where Bytes.Element == UInt8 {
         // We need to know how many bytes we _need_ to store this "int".
         guard ((bytes.count * 7) + 7) / 8 <= MemoryLayout<UInt>.size else {
-            throw CryptoKitASN1Error.invalidASN1Object
+            throw CryptoASN1Error.invalidASN1Object
         }
 
         self = 0

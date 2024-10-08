@@ -1,5 +1,5 @@
-import protocol CryptoKit.Digest
-import struct CryptoKit.SHA256
+import protocol Crypto.Digest
+import struct Crypto.SHA256
 import Foundation
 
 // MARK: - K1.ECDSAWithKeyRecovery

@@ -19,7 +19,7 @@
 
 // swiftformat:enable strip
 
-import CryptoKit
+import Crypto
 import Foundation
 @testable import K1
 import XCTest

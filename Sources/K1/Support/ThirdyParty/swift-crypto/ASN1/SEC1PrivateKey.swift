@@ -18,7 +18,7 @@
 
 
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && CRYPTO_IN_SWIFTPM && !CRYPTO_IN_SWIFTPM_FORCE_BUILD_API
-@_exported import CryptoKit
+@_exported import Crypto
 #else
 import Foundation
 
@@ -46,7 +46,7 @@ extension ASN1 {
             self = try ASN1.sequence(rootNode, identifier: identifier) { nodes in
                 let version = try Int(asn1Encoded: &nodes)
                 guard 1 == version else {
-                    throw CryptoKitASN1Error.invalidASN1Object
+                    throw CryptoASN1Error.invalidASN1Object
                 }
 
                 let privateKey = try ASN1OctetString(asn1Encoded: &nodes)
@@ -69,7 +69,7 @@ extension ASN1 {
                 case ASN1ObjectIdentifier.NamedCurves.secp256k1:
                     return .secp256k1
                 default:
-                    throw CryptoKitASN1Error.invalidASN1Object
+                    throw CryptoASN1Error.invalidASN1Object
                 }
             }
         }
@@ -91,7 +91,7 @@ extension ASN1 {
                     case .secp256k1:
                         oid = ASN1ObjectIdentifier.NamedCurves.secp256k1
                     default:
-                        throw CryptoKitASN1Error.invalidASN1Object
+                        throw CryptoASN1Error.invalidASN1Object
                     }
 
                     try coder.serialize(oid, explicitlyTaggedWithTagNumber: 0, tagClass: .contextSpecific)

@@ -36,7 +36,7 @@ extension K1.Error {
 
 // MARK: - InternalFailure
 enum InternalFailure: UInt, Sendable, Swift.Error, Hashable {
-	/// Failed to cast to `CryptoKit.SharedSecret` from internal representation.
+	/// Failed to cast to `Crypto.SharedSecret` from internal representation.
 	case sharedSecretIncorrectSize
 }
 

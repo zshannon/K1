@@ -1,4 +1,4 @@
-import CryptoKit
+import Crypto
 import Foundation
 
 // MARK: - _K1KeyExportable
